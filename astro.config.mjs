@@ -28,7 +28,7 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://fuwari.vercel.app/",
+    site: "https://blogs.kiy1cs.workers.dev/",
     base: "/",
     trailingSlash: "always",
 
