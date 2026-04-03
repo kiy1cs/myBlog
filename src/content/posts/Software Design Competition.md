@@ -5,10 +5,13 @@ description: 'notes of software design competition'
 image: ''
 tags: [C#, ASP.NET, Winform, Android Studio, Kotlin, SQL]
 category: 'coding'
-draft: false
+draft: true
 lang: 'en'
 ---
 # 09 competition
+:::warning
+methods mentioned in the notes should NOT be used for real-life usage softwares
+:::
 ## section 1 - SA&DB Design
 ### excel
 #### XLOOKUP
@@ -31,6 +34,7 @@ B table:
 
 in table A do:
 `=XLOOKUP(A1,TableB!B2:B100,TableB!A2:A100)`
+
 add `$` in a format like `$B$2:$B$100` for absolute location
 </details>
 
@@ -52,12 +56,9 @@ for an array:
 </details>
 
 #### randomized datetime
-dates:
-`=RANDBETWEEN(DATE(2023,1,1),DATE(2023,12,31))`
-and change it to datetime format
+dates:`=RANDBETWEEN(DATE(2023,1,1),DATE(2023,12,31))`and change it to datetime format
 
-date + time:
-`=RANDBETWEEN(DATE(2023,1,1),DATE(2023,12,31)) + RAND()`
+date + time:`=RANDBETWEEN(DATE(2023,1,1),DATE(2023,12,31)) + RAND()`
 
 **later than previously generated time:**
 | Column A | Column B |
@@ -65,14 +66,17 @@ date + time:
 |Start date| End date |
 
 `=A1 + (RAND()*10)`
+
 change `10` according to how far away from start date you want it
 #### substitute
 ![image](src/assets/images/excelSubstitute.png)
 #### search
 `search("TExt",theCellToSearch)`
+
 returns text position
 #### guid
 data > from table/range
+
 new column > custom
 ```
 try error "" otherwise Text.NewGuid()
@@ -178,7 +182,7 @@ finally build the database
 ```
 dotnet ef dbcontext scaffold "Server=localhost;Database=資料庫名稱;Trusted_Connection=True;Encrypt=False;" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --force
 ```
-![image](https://hackmd.io/_uploads/r1khnhXY-e.png)
+![image](src/assets/images/aspBuildSucceed.png)
 this means its done successfully ^^^
 ### setup
 in `appsettings.json` add ConnectionStrings
@@ -247,15 +251,12 @@ public IActionResult statusAction([FromBody] AccountUpdateReq data)
 lastly, code a testing HttpGet
 head to Properties folder, launchSettings.json
 make sure `"launchBrowser"` is set to true
-![image](https://hackmd.io/_uploads/rJoyb6Qtbx.png)
-launch it
-![image](https://hackmd.io/_uploads/HJYP-pmYZe.png)
-you should see a website in your browser, add your route after the localhost
-![image](https://hackmd.io/_uploads/S1bhW6XFZg.png)
+![image](src/assets/images/launchBrowserTrue.png)
+launch it and you should see a website in your browser, add your route after localhost:port/,
 then there should be your data listed as json
 
 try commenting/removing those if you cant get into website after publishing
-![image](https://hackmd.io/_uploads/r1dn59k9Zg.png)
+![image](src/assets/images/aspAuthorization.png)
 ## section 2 - Software Design
 ### project setting
 #### c# version
