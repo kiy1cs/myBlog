@@ -1,7 +1,7 @@
 ---
 title: Software Design Competition
 published: 2026-04-03
-description: ''
+description: 'notes of software design competition'
 image: ''
 tags: [C#, ASP.NET, Winform, Android Studio, Kotlin, SQL]
 category: 'coding'
@@ -67,7 +67,7 @@ date + time:
 `=A1 + (RAND()*10)`
 change `10` according to how far away from start date you want it
 #### substitute
-![image](https://hackmd.io/_uploads/By_yT4pFWe.png)
+![image](src/assets/images/excelSubstitute.png)
 #### search
 `search("TExt",theCellToSearch)`
 returns text position
@@ -299,14 +299,15 @@ if(response.IsSuccessStatusCode){
 ```
 ### datagridview
 
->[!Important] 
->**load, filtering data**
->always do it in these steps:
->load data(if not loaded) ->
->capture filters -> filter data into a new datatable(Task.Run) -> apply to datagridview
->
->**others**
->if data is huge, change AutoSizeMode to DisplayedCells
+:::important
+**load, filtering data**
+always do it in these steps:
+load data(if not loaded) ->
+capture filters -> filter data into a new datatable(Task.Run) -> apply to datagridview
+
+**others**
+if data is huge, change AutoSizeMode to DisplayedCells
+:::
 #### filtering huge data
 use `await Task.Run`!
 ```csharp
@@ -330,9 +331,9 @@ DataTable filteredData = await Task.Run(() =>
 AdminAccountsDataGrid.DataSource = filteredData;
 ```
 #### comboBoxColumn
->[!Important]
->make it not read only (turn off read only in properties)
-
+:::Important
+make it not read only (turn off read only in properties)
+:::
 enable edit with single click
 ```csharp
 private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -904,21 +905,21 @@ Box(
 }
 ```
 ## Keymap
-### Global
-- `Ctrl + S` save all
-- `Ctrl + D` duplicate current line
-- `Alt + drag` edit multiple lines
-### Visual Studio
-- `Ctrl + Shift + A` create new item
-- `Ctrl + Alt + X` toolbox
-- `Ctrl + Alt + T` items browser
-- `F7` switch to form.cs
-- `Ctrl + F7` switch to form design
-- `Ctrl + Tab` switch between opened files
-### SSMS
-- `F5` execute query
-### Android Studio
-- `Ctrl + Alt + L` format
+- Global
+    - `Ctrl + S` save all
+    - `Ctrl + D` duplicate current line
+    - `Alt + drag` edit multiple lines
+- Visual Studio
+    - `Ctrl + Shift + A` create new item
+    - `Ctrl + Alt + X` toolbox
+    - `Ctrl + Alt + T` items browser
+    - `F7` switch to form.cs
+    - `Ctrl + F7` switch to form design
+    - `Ctrl + Tab` switch between opened files
+- SSMS
+    - `F5` execute query
+- Android Studio
+    - `Ctrl + Alt + L` format
 ## packages!!
 important:
 ```
