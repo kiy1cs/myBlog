@@ -5,7 +5,7 @@ description: 'notes of software design competition'
 image: ''
 tags: [C#, ASP.NET, Winform, Android Studio, Kotlin, SQL]
 category: 'coding'
-draft: true
+draft: false
 lang: 'en'
 ---
 # 09 competition

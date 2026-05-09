@@ -33,10 +33,14 @@ lang: 'en'
 - roblox: https://www.roblox.com/users/452674632/profile
 - note: im not brainrot kids
 ### currently plays
-- terraria
-- war thunder
-- euro truck
-### wants to play
+- ace combat 7
+- project wingman
 - ready or not
+- war thunder
+- hacknet
+### games i own
+minecraft, euro truck, age of empires 3, chained together, forza horizon 5, 
+the farmer was replaced, terraria, gta 5, super battle golf, supermarket together
+### wants to play
 - hearts of iron 4
 - cyberpunk
