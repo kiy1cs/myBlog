@@ -809,7 +809,8 @@ object TokenManager{
 ```
 ### api ---
 add those in AndroidManifest.xml
-![image](/src/assets/images/androidManifestInternet.png)
+
+![image](src/assets/images/androidManifestInternet.png)
 
 ```kotlin
 suspend fun httpGet(urlString: String): String = withContext(Dispatchers.IO){
