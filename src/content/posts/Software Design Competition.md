@@ -12,14 +12,14 @@ lang: 'en'
 :::warning
 methods mentioned in the notes should NOT be used for real-life usage softwares
 :::
-## section 1 - SA&DB Design
-### excel
-#### XLOOKUP
+## section 1 - SA&DB Design ----
+### excel ---
+#### XLOOKUP --
 ```
 =XLOOKUP(keyword, arrayToSearch, arrayToReturn)
 ```
 <details>
-  <summary>senario</summary>
+  <summary>senario(open me)</summary>
 swapping name in A table to its id, where you can find on B table
     
 A table:
@@ -38,9 +38,9 @@ in table A do:
 add `$` in a format like `$B$2:$B$100` for absolute location
 </details>
 
-#### randomize data from other table/an array
+#### randomize data from other table/an array --
 <details>
-<summary>senario</summary>
+<summary>senario(open me)</summary>
 senario:
 generate a list randomize company id
 
@@ -55,12 +55,12 @@ for an array:
 `=INDEX({"hello","bye"},RANDBETWEEN(1,2))`
 </details>
 
-#### randomized datetime
+#### randomized datetime --
 dates:`=RANDBETWEEN(DATE(2023,1,1),DATE(2023,12,31))`and change it to datetime format
 
 date + time:`=RANDBETWEEN(DATE(2023,1,1),DATE(2023,12,31)) + RAND()`
 
-**later than previously generated time:**
+later than previously generated time:
 | Column A | Column B |
 | -------- | -------- |
 |Start date| End date |
@@ -68,21 +68,21 @@ date + time:`=RANDBETWEEN(DATE(2023,1,1),DATE(2023,12,31)) + RAND()`
 `=A1 + (RAND()*10)`
 
 change `10` according to how far away from start date you want it
-#### substitute
-![image](src/assets/images/excelSubstitute.png)
-#### search
+#### substitute --
+`substitute("theCell", "TextToReplace", "NewText")`
+#### search --
 `search("TExt",theCellToSearch)`
 
 returns text position
-#### guid
+#### guid --
 data > from table/range
 
 new column > custom
 ```
 try error "" otherwise Text.NewGuid()
 ```
-### ssms
-#### common queries
+### ssms ---
+#### common queries --
 get data from tables:
 `SELECT * FROM db.table`
 add new row
@@ -91,8 +91,9 @@ modify existing data
 `UPDATE db.table SET Column1 = 'Value' WHERE Column2 = 'value'`
 remove rows
 `DELETE FROM db.table WHERE Column1 = 'value'`
-#### flatten
-
+#### flatten --
+ <details>
+ <summary>flatten(open me to see)</summary>
 ```sql
 ;WITH CommentTree AS (
     SELECT
@@ -161,8 +162,10 @@ INNER JOIN CommentTree ct
 LEFT JOIN PostComment rp
     ON pc.ReplyPostCommentId = rp.PostCommentId;
 ```
-## API Setup
-### packages, build
+</details>
+
+## API Setup ----
+### packages, build ---
 open developer powershell
 change to project directory
 ```bash
@@ -184,7 +187,7 @@ dotnet ef dbcontext scaffold "Server=localhost;Database=資料庫名稱;Trusted_
 ```
 ![image](src/assets/images/aspBuildSucceed.png)
 this means its done successfully ^^^
-### setup
+### setup ---
 in `appsettings.json` add ConnectionStrings
 ```json
 {
@@ -257,15 +260,15 @@ then there should be your data listed as json
 
 try commenting/removing those if you cant get into website after publishing
 ![image](src/assets/images/aspAuthorization.png)
-## section 2 - Software Design
-### project setting
-#### c# version
+## section 2 - Software Design ----
+### project setting ---
+#### c# version --
 unload project, open project.csproj
 in `<PropertyGroup>`
 paste in:
 `<langVersion>latest</langVersion>`
-### api
-#### setup
+### api ---
+#### setup --
 ```csharp
 public static HttpClient YourAPI = new HttpClient()
 {
@@ -273,14 +276,14 @@ public static HttpClient YourAPI = new HttpClient()
     Timeout = TimeSpan.FromSeconds(20)
 };
 ```
-#### get data, deserialize json
+#### get data, deserialize json --
 ```csharp
 var response = await YourAPI.GetAsync("route");
 string json = await response.Content.ReadAsStringAsync();
 var options = new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 admins = System.Text.Json.JsonSerializer.Deserialize<List<Admin>>(json, options);
 ```
-#### post data, serialize json
+#### post data, serialize json --
 ```csharp
 var payload = new
 {
@@ -298,7 +301,7 @@ if(response.IsSuccessStatusCode){
     //oh yeah its succes hahahhaha
 }
 ```
-### datagridview
+### datagridview ---
 
 :::important
 **load, filtering data**
@@ -309,7 +312,7 @@ capture filters -> filter data into a new datatable(Task.Run) -> apply to datagr
 **others**
 if data is huge, change AutoSizeMode to DisplayedCells
 :::
-#### filtering huge data
+#### filtering huge data --
 use `await Task.Run`!
 ```csharp
 var rolefilter = RoleFilter.Text;
@@ -331,7 +334,7 @@ DataTable filteredData = await Task.Run(() =>
 });
 AdminAccountsDataGrid.DataSource = filteredData;
 ```
-#### comboBoxColumn
+#### comboBoxColumn --
 :::Important
 make it not read only (turn off read only in properties)
 :::
@@ -357,8 +360,8 @@ private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs
     }
 }
 ```
-#### cellpainting
-##### button
+#### cellpainting --
+##### button -
 ```csharp
 private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
 {
@@ -384,7 +387,7 @@ private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingE
     }
 }
 ```
-### dragging form with custom topbar
+### dragging form with custom topbar ---
 ```csharp
 [DllImport("user32.dll")]
 public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -399,7 +402,7 @@ private void header_MouseDown(object sender, MouseEventArgs e)
     }
 }
 ```
-### icon dragging
+### icon dragging ---
 ```csharp
 Point mouseOffset;
 bool isdDragging = false;
@@ -433,7 +436,7 @@ private void icon_MouseMove(object sender, MouseEventArgs e)
     }
 }
 ```
-### enum
+### enum ---
 basic usage
 ```csharp
 public enum OrderStatus
@@ -460,8 +463,8 @@ int value = (int)OrderStatus.Shipped; // Result: 2
 // Int to Enum
 OrderStatus status = (OrderStatus)3; // Result: OrderStatus.Delivered
 ```
-### exporting files
-#### print to PDF
+### exporting files ---
+#### print to PDF --
 ```csharp
 private void exportPDF_Click(object sender, EventArgs e)
 {
@@ -494,7 +497,7 @@ private void exportPDF_Click(object sender, EventArgs e)
     }
 }
 ```
-#### import to csv
+#### import to csv --
 ```csharp
 SaveFileDialog dialog = new SaveFileDialog(){
     Filter = "CSV檔案 | *.csv",
@@ -521,7 +524,7 @@ if(dialog.ShowDialog() == DialogResult.OK)
 }
 File.WriteAllText(dialog.FileName, sb.ToString(), Encoding.UTF8);
 ```
-#### import to json
+#### import to json --
 ```csharp
 var data = new 
 {
@@ -542,18 +545,16 @@ if(saveJson.ShowDialog() == DialogResult.OK)
     System.IO.File.WriteAllText(saveJson.FileName, jsonString);
 }
 ```
-### importing from file
-#### txt from a directory
+### importing from file ---
+#### txt from a directory --
 ```csharp
 using System.IO;
-
-// ... 在按鈕事件中 ...
 
 string folderPath = @"C:\YourChatLogs"; // 資料夾路徑
 
 if (Directory.Exists(folderPath))
 {
-    // 取得所有 .txt 檔案的路徑
+    // gets all .txt files' path
     string[] filePaths = Directory.GetFiles(folderPath, "*.txt");
 
     foreach (string path in filePaths)
@@ -567,7 +568,7 @@ else
     MessageBox.Show("找不到指定的資料夾！");
 }
 ```
-#### relative path
+#### relative path --
 ```csharp
 // 1. 取得目前執行檔的位置 (例如：C:\MyApp\bin\Debug\)
 string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -576,9 +577,9 @@ string relativePath = @"..\..\Data\settings.txt";
 // 3. 把路徑拼起來
 string combinedPath = Path.Combine(baseDirectory, relativePath);
 ```
-can use `Path.GetFullPath() to clean up the .. in your string`
-### paint a circle
-#### label
+can use `Path.GetFullPath()` to clean up the .. in your string
+### paint a circle ---
+#### label --
 ```csharp
 private void label1_Paint(object sender, PaintEventArgs e)
 {
@@ -591,7 +592,7 @@ private void label1_Paint(object sender, PaintEventArgs e)
     //color, x, y, width, height
 }
 ```
-#### combobox
+#### combobox --
 DrawMode -> OwnerDrawFixed
 DropDownStyle -> DropDownList (recommended)
 ```csharp
@@ -633,7 +634,7 @@ private void comboBox1_DrawItem(object sender, DrawItemEventArgs e)
     e.DrawFocusRectangle();
 }
 ```
-### sha256
+### sha256 ---
 ```csharp
 public static string ToSHA256(string input)
 {
@@ -652,8 +653,8 @@ public static string ToSHA256(string input)
     }
 }
 ```
-### user control
-#### loadrooms
+### user control --- 
+#### loadrooms --
 ```csharp
 public void loadRooms()
         {
@@ -674,7 +675,7 @@ public void loadRooms()
         }
 
 ```
-#### rooms
+#### rooms --
 ```csharp
 public int roomId { get; set; }
 
@@ -692,7 +693,7 @@ public int roomId { get; set; }
             time.Click += (s, e) => RoomSelected?.Invoke(this, this.roomId);
         }
 ```
-#### messages
+#### messages --
 ```csharp
 public void SetMessage(string message,string userandtime, bool isMine, string type, bool isViolation)
         {
@@ -716,47 +717,43 @@ public void SetMessage(string message,string userandtime, bool isMine, string ty
             this.Height += chatmessage.Height - 18;
         }
 ```
-## section 3 - App Design
-### versions
-![image](https://hackmd.io/_uploads/HJcholrq-g.png)
-### viewmodel
-#### normal
+## section 3 - App Design ----
+### versions ---
+![image](src/assets/images/appDesignVersions.png)
+### viewmodel ---
+#### normal --
 ```kotlin
 class MainViewModel : ViewModel() {
-    // 外部可以讀取，但只有 ViewModel 內部可以修改
+    // others can read only, only the viewmodel can write
     var page by mutableStateOf(1)
         private set 
 
     fun changePage(newPage: Int) {
-        // 可以在這裡加上檢查邏輯，例如 page 不得小於 1
         if (newPage > 0) {
             page = newPage
         }
     }
 }
 ```
-#### stateflow
+#### stateflow --
 ```kotlin
 class MyViewModel : ViewModel() {
-    // 1. 私有的 MutableStateFlow，用來更新資料
+    // for changing value
     private val _userCount = MutableStateFlow(0)
     
-    // 2. 公開的唯讀 StateFlow，讓 Activity 觀察
+    // public read only, for activity
     val userCount: StateFlow<Int> = _userCount
 
-    // 3. 處理業務邏輯
     fun incrementCount() {
         _userCount.value += 1
     }
 }
 class MainActivity : AppCompatActivity() {
-    // 使用 viewModels 委託來取得實例
     private val viewModel: MyViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
-        // 觀察資料變化並更新 UI
+
         lifecycleScope.launch {
             viewModel.userCount.collect { count ->
                 binding.textView.text = "Count: $count"
@@ -769,7 +766,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 ```
-### sharedpreferences
+### sharedpreferences ---
 ```kotlin
 // for "remember me" login
 object TokenManager{
@@ -794,9 +791,9 @@ object TokenManager{
     }
 }
 ```
-### api
+### api ---
 add those in AndroidManifest.xml
-![image](https://hackmd.io/_uploads/HJsbikHcbx.png)
+![image](/src/assets/images/androidManifestInternet.png)
 
 ```kotlin
 suspend fun httpGet(urlString: String): String = withContext(Dispatchers.IO){
@@ -882,10 +879,10 @@ private suspend fun fetchDataFromApi(): List<Data> {
     return resultList
 }
 ```
-### LINQ
-![image](https://hackmd.io/_uploads/rkqol5Pcbg.png)
+### LINQ ---
+![image](src/assets/images/linqAndroidStudio.png)
 add `.asSequence()` for huge datas
-### PullToRefresh
+### PullToRefresh ---
 ```kotlin
 val refreshState = rememberPullToRefreshState()
 Box(
@@ -905,7 +902,7 @@ Box(
         }
 }
 ```
-## Keymap
+## Keymap ----
 - Global
     - `Ctrl + S` save all
     - `Ctrl + D` duplicate current line
@@ -921,7 +918,7 @@ Box(
     - `F5` execute query
 - Android Studio
     - `Ctrl + Alt + L` format
-## packages!!
+## packages!! ----
 important:
 ```
 dotnet-ef 9.0.13
