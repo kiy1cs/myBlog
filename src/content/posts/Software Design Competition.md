@@ -1,6 +1,6 @@
 ---
 title: Software Design Competition
-published: 2026-04-03
+published: 2026-05-09
 description: 'notes of software design competition'
 image: ''
 tags: [C#, ASP.NET, Winform, Android Studio, Kotlin, SQL]
@@ -15,9 +15,7 @@ methods mentioned in the notes should NOT be used for real-life usage softwares
 ## section 1 - SA&DB Design ----
 ### excel ---
 #### XLOOKUP --
-```
-=XLOOKUP(keyword, arrayToSearch, arrayToReturn)
-```
+`=XLOOKUP(keyword, arrayToSearch, arrayToReturn)`
 <details>
   <summary>senario(open me)</summary>
 swapping name in A table to its id, where you can find on B table
@@ -78,22 +76,29 @@ returns text position
 data > from table/range
 
 new column > custom
-```
-try error "" otherwise Text.NewGuid()
-```
+`try error "" otherwise Text.NewGuid()`
 ### ssms ---
 #### common queries --
 get data from tables:
+
 `SELECT * FROM db.table`
+
 add new row
+
 `INSERT INTO db.table (Column1, Column2) VALUES ('hello', 'bye')`
+
 modify existing data
+
 `UPDATE db.table SET Column1 = 'Value' WHERE Column2 = 'value'`
+
 remove rows
+
 `DELETE FROM db.table WHERE Column1 = 'value'`
+
 #### flatten --
  <details>
  <summary>flatten(open me to see)</summary>
+
 ```sql
 ;WITH CommentTree AS (
     SELECT
@@ -162,11 +167,13 @@ INNER JOIN CommentTree ct
 LEFT JOIN PostComment rp
     ON pc.ReplyPostCommentId = rp.PostCommentId;
 ```
+
 </details>
 
 ## API Setup ----
 ### packages, build ---
 open developer powershell
+
 change to project directory
 ```bash
 cd YOUR_PROJECT_NAME
@@ -204,6 +211,7 @@ in `appsettings.json` add ConnectionStrings
 }
 ```
 in `Program.cs` add this
+
 change `<WebContext>` to your context in Models folder
 ```csharp
 builder.Services.AddDbContext<WebContext>(options =>
@@ -211,6 +219,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("WebDatabase")));
 ```
 
 head to Controllers folder and add a new controller
+
 change accordingly
 ```csharp
 namespace YourProject.Controllers
@@ -252,21 +261,28 @@ public IActionResult statusAction([FromBody] AccountUpdateReq data)
 ```
 
 lastly, code a testing HttpGet
+
 head to Properties folder, launchSettings.json
+
 make sure `"launchBrowser"` is set to true
+
 ![image](src/assets/images/launchBrowserTrue.png)
+
 launch it and you should see a website in your browser, add your route after localhost:port/,
+
 then there should be your data listed as json
 
 try commenting/removing those if you cant get into website after publishing
+
 ![image](src/assets/images/aspAuthorization.png)
 ## section 2 - Software Design ----
 ### project setting ---
 #### c# version --
 unload project, open project.csproj
+
 in `<PropertyGroup>`
-paste in:
-`<langVersion>latest</langVersion>`
+
+paste in: `<langVersion>latest</langVersion>`
 ### api ---
 #### setup --
 ```csharp
@@ -361,7 +377,7 @@ private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs
 }
 ```
 #### cellpainting --
-##### button -
+##### button 
 ```csharp
 private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
 {
