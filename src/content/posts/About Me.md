@@ -26,8 +26,8 @@ lang: 'en'
 ### PC specs
 - CPU: Ryzen 3 3100
 - GPU: RX 570
-- A520M AORUS ELITE, 16GB RAM DDR4
-- dual boots windows and arch linux btwbtwbtw
+- A520M AORUS ELITE
+- 16GB RAM DDR4
 ## games
 ### favorite
 - roblox: https://www.roblox.com/users/452674632/profile
