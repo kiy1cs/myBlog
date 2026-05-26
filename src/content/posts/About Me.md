@@ -12,11 +12,7 @@ lang: 'en'
 - a high school student 🧑‍🎓
 - from taiwan and loves his country 🇹🇼
 - plays games, aside from software i also like military and history 🎮
-## contact me
-- discord: @realkiy1cs325
-- matrix: https://matrix.to/#/@realkiy1cs325:matrix.org
-- github: https://github.com/kiy1cs
-- instagram: https://www.instagram.com/kiy1cs/
+- contact me through e-mail: kiy1cs@proton.me
 ## tech
 ### wants to learn
 - game development 🎮
