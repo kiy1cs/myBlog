@@ -20,7 +20,7 @@ lang: 'en'
 - building a homelab 🖥️
 - more programming languages ⌨️
 ### PC specs
-- CPU: Ryzen 3 3100
+- CPU: Ryzen 5 5600X
 - GPU: RX 570
 - A520M AORUS ELITE
 - 16GB RAM DDR4
