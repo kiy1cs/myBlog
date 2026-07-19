@@ -10,7 +10,7 @@ lang: 'en'
 ---
 ## main
 - a high school student 🧑‍🎓
-- from taiwan and loves his country 🇹🇼
+- from taiwan and loves my country 🇹🇼
 - plays games, aside from software i also like military and history 🎮
 - contact me through e-mail: kiy1cs@proton.me
 ## tech
